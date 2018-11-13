@@ -1,25 +1,51 @@
 apply plugin: 'com.android.application'
 
+def VERSION_NAME = "1.0.0.1"
+def VERSION_CODE = 2
+def APPLICATION_ID = "mx.com.ia.jenkinstuto"
+
+
 android {
+    signingConfigs {
+        signed {
+            keyAlias 'arminSign'
+            keyPassword 'SanpuercO1*'
+            storeFile file('C:/Users/arodriguez/Documents/Armin Rodriguez/armin_developer_key.jks')
+            storePassword 'Sanpuerco1*'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
-        applicationId "mx.com.ia.jenkinstuto"
-        minSdkVersion 21
+        applicationId APPLICATION_ID
+        minSdkVersion 19
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.signed
+        }
+    }
+
+    productFlavors {
+        flavorDimensions "tier"
+        production {
+            dimension "tier"
+            setProperty("archivesBaseName", "jenkins-production$VERSION_NAME")
+        }
+        development {
+            dimension "tier"
+            setProperty("archivesBaseName", "jenkins-development$VERSION_NAME")
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
