@@ -7,10 +7,10 @@ def APPLICATION_ID = "mx.com.ia.jenkinstuto"
 android {
     signingConfigs {
         signed {
-            keyAlias 'arminSign'
-            keyPassword 'SanpuercO1*'
-            storeFile file('C:/Users/arodriguez/Documents/Armin Rodriguez/armin_developer_key.jks')
-            storePassword 'Sanpuerco1*'
+            storeFile file('../certificado/armin_developer_key.jks')
+            keyPassword RELEASE_KEY_PASSWORD
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
         }
     }
     compileSdkVersion 27
