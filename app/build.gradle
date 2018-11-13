@@ -4,7 +4,6 @@ def VERSION_NAME = "1.0.0.1"
 def VERSION_CODE = 2
 def APPLICATION_ID = "mx.com.ia.jenkinstuto"
 
-
 android {
     signingConfigs {
         signed {
